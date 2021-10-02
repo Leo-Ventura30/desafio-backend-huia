@@ -27,6 +27,16 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       type: DataTypes.FLOAT,
     },
+    id_business: {
+      allowNull: false,
+      defaultValue: DataTypes.UUIDV1,
+      type: DataTypes.UUID,
+    },
+    id_manufacturing: {
+      allowNull: false,
+      defaultValue: DataTypes.UUIDV1,
+      type: DataTypes.UUID,
+    },
   });
   return Products;
 };
