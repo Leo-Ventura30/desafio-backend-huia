@@ -1,0 +1,23 @@
+{
+  "name": "desafio_backend_huia",
+  "version": "1.0.0",
+  "author": "Leonardo Ventura",
+  "description": "",
+  "main": "index.js",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "sequelize": "^6.6.5",
+    "sqlite3": "^4.2.0"
+  },
+  "devDependencies": {
+    "jest": "^27.2.4",
+    "nodemon": "^2.0.13",
+    "sequelize-cli": "^6.2.0"
+  },
+  "scripts": {
+    "test": "jest",
+    "start": "node src/",
+    "dev": "nodemon src/"
+  }
+}
