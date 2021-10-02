@@ -10,16 +10,16 @@ module.exports = {
         type: Sequelize.UUID,
       },
       name: {
-        allowNull: true,
+        allowNull: false,
         type: Sequelize.STRING,
       },
       cpf_cnpj: {
-        allowNull: true,
+        allowNull: false,
         unique: true,
         type: Sequelize.STRING,
       },
       email: {
-        allowNull: true,
+        allowNull: false,
         unique: true,
         type: Sequelize.STRING,
       },
