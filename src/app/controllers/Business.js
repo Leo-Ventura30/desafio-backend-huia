@@ -11,7 +11,7 @@ class BusinessController {
       });
       return res.send(createdBussines.name + " Criado");
     } catch (error) {
-      console.log(error);
+      return res.send(error.message);
     }
   }
   async readBusiness(req, res) {
@@ -22,16 +22,19 @@ class BusinessController {
       });
       return res.send(selectBusiness);
     } catch (error) {
-      return res.send(error);
+      return res.send(error.message);
     }
   }
   async updateBusiness(req, res) {
     try {
       await Business.sync();
-      const updatedBusiness = await Business.update({}, { where: {} });
+      const updatedBusiness = await Business.update(
+        { name: "Jonhy Shoes" },
+        { where: { email: "mail@asds.com" } }
+      );
       return res.send(updatedBusiness);
     } catch (error) {
-      return res.send(error);
+      return res.send(error.message);
     }
   }
   async deleteBusiness(req, res) {
@@ -40,7 +43,7 @@ class BusinessController {
       const deleteBusiness = await Business.delete({});
       return res.send(deleteBusiness);
     } catch (error) {
-      return res.send(error);
+      return res.send(error.message);
     }
   }
 }

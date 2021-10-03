@@ -17,11 +17,11 @@ module.exports = {
         type: Sequelize.FLOAT,
         allowNull: false,
       },
-      id_clients: {
+      id_client: {
         allowNull: false,
         defaultValue: Sequelize.UUIDV1,
         type: Sequelize.UUID,
-        references: { model: "clients", key: "id" },
+        references: { model: "client", key: "id" },
         onUpdate: "CASCADE",
         onDelete: "CASCADE",
       },

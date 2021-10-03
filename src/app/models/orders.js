@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.FLOAT,
       allowNull: false,
     },
-    id_clients: {
+    id_client: {
       allowNull: false,
       defaultValue: DataTypes.UUIDV1,
       type: DataTypes.UUID,
@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   Orders.associate = (models) => {
-    Orders.belongsTo(models.Clients, { foreignKey: "id_clients" });
+    Orders.belongsTo(models.Client, { foreignKey: "id_client" });
     Orders.belongsTo(models.Products, { foreignKey: "id_business" });
     Orders.belongsTo(models.Products, { foreignKey: "id_products" });
   };
