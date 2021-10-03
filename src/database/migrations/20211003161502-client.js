@@ -13,7 +13,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING,
       },
-      cpf_hash: {
+      cpf: {
         allowNull: false,
         unique: true,
         type: Sequelize.STRING,

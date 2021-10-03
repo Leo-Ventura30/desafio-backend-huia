@@ -2,7 +2,7 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable("business", {
+    return queryInterface.createTable("user", {
       id: {
         allowNull: false,
         primaryKey: true,
@@ -13,10 +13,27 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING,
       },
-      cpf_cnpj: {
+      login: {
         allowNull: false,
         unique: true,
         type: Sequelize.STRING,
+      },
+      email: {
+        allowNull: false,
+        unique: true,
+        type: Sequelize.STRING,
+      },
+      password_hash: {
+        allowNull: false,
+        type: Sequelize.STRING,
+      },
+      id_business: {
+        allowNull: false,
+        defaultValue: Sequelize.UUIDV1,
+        type: Sequelize.UUID,
+        references: { model: "business", key: "id" },
+        onUpdate: "CASCADE",
+        onDelete: "CASCADE",
       },
       created_at: {
         allowNull: false,
@@ -30,6 +47,6 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable("business");
+    return queryInterface.dropTable("user");
   },
 };
