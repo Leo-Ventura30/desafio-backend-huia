@@ -1,7 +1,7 @@
 const bcrypt = require("bcryptjs");
 
 module.exports = (sequelize, DataTypes) => {
-  const Clients = sequelize.defines(
+  const Clients = sequelize.define(
     "Clients",
     {
       id: {

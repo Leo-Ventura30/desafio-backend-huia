@@ -1,14 +1,10 @@
 module.exports = {
   development: {
+    database: "huia",
+    username: "sqlite",
+    password: "sqlite",
+    port: 5000,
     dialect: "sqlite",
-    storage: "./db/huia.sqlite3",
-  },
-  test: {
-    dialect: "sqlite",
-    storage: ":memory",
-  },
-  production: {
-    dialect: "sqlite",
-    storage: "../../db/huia.sqlite3",
+    storage: "./db/huia.sqlite",
   },
 };

@@ -1,7 +1,7 @@
 const bcrypt = require("bcryptjs");
 
 module.exports = (sequelize, DataTypes) => {
-  const Business = sequelize.defines(
+  const Business = sequelize.define(
     "Business",
     {
       id: {
@@ -14,8 +14,14 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         type: DataTypes.STRING,
       },
-      login: {
+      cpf_cnpj: {
         allowNull: false,
+        unique: true,
+        type: DataTypes.STRING,
+      },
+      email: {
+        allowNull: false,
+        unique: true,
         type: DataTypes.STRING,
       },
       password: {
@@ -23,7 +29,6 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.VIRTUAL,
       },
       password_hash: {
-        allowNull: false,
         type: DataTypes.STRING,
       },
     },

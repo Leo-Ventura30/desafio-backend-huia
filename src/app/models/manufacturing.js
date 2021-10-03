@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const Manufacturing = sequelize.defines("Manufacturing", {
+  const Manufacturing = sequelize.define("Manufacturing", {
     id: {
       allowNull: false,
       primaryKey: true,

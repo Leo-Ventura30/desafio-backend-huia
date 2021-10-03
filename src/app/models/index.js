@@ -9,22 +9,7 @@ const config = require(__dirname + "/../../config/connection.js")[env];
 const db = {};
 
 let sequelize;
-if (config.development) {
-  sequelize = new Sequelize(process.env[config.development], config);
-} else {
-  sequelize = new Sequelize(
-    config.database,
-    config.username,
-    config.password,
-    config
-  );
-}
-try {
-  await sequelize.authenticate();
-  console.log("Connection has been established successfully.");
-} catch (error) {
-  console.error("Unable to connect to the database:", error);
-}
+sequelize = new Sequelize(config);
 fs.readdirSync(__dirname)
   .filter((file) => {
     return (
