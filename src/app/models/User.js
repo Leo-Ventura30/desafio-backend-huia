@@ -52,7 +52,7 @@ module.exports = (sequelize, DataTypes) => {
     User.belongsTo(models.Business, { foreignKey: "id_business" });
   };
 
-  User.prototype.checkpassword = function (password) {
+  User.prototype.checkPassword = function (password) {
     return bcrypt.compare(password, this.password_hash);
   };
   return User;

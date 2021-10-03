@@ -1,3 +1,4 @@
+const { Op } = require("sequelize");
 const { User } = require("../models");
 class UserDomain {
   async createUser(user) {
@@ -8,9 +9,9 @@ class UserDomain {
   async readUser(user) {
     await User.sync();
     const selectUser = await User.findOne({
-      where: user,
+      where: { [Op.or]: user },
     });
-    return { msg: "Usuario encontrado!", data: selectUser };
+    return selectUser;
   }
   async updateUser(newUser, user) {
     await User.sync();
@@ -30,6 +31,15 @@ class UserDomain {
       where: user,
     });
     return { msg: "Usuario deletado!", status: deleteUser };
+  }
+  async loginUser(user) {
+    await User.sync();
+    const { login, password } = user;
+    const loginUser = await this.readUser({ login, email: login });
+    if (!loginUser || !(await loginUser.checkPassword(password))) {
+      throw new Error("Usuario ou senha invalido!");
+    }
+    return loginUser;
   }
 }
 

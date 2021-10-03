@@ -14,9 +14,10 @@ router.delete("/business/delete", BusinessController.deleteBusiness);
 
 /* USER ROUTES */
 router.post("/business/create/user", UserController.createUser);
-router.get("/business/show/user", UserController.createUser);
+router.get("/business/show/user", UserController.readUser);
 router.put("/business/update/user", UserController.updateUser);
 router.delete("/business/delete/user", UserController.deleteUser);
+router.post("/business/login/user", UserController.loginUser);
 
 /* CLIENT ROUTES */
 router.post("/client/create", ClientController.createClient);
