@@ -2,8 +2,11 @@ const { Business } = require("../models");
 class BusinessDomain {
   async createBusiness(business) {
     await Business.sync();
-    const createdBusiness = await Business.create(business);
-    return { msg: "Usuario criado!", data: createdBusiness };
+    const [dataBusiness, createdBusiness] = await Business.findOrCreate({
+      where: { cpf_cnpj: business.cpf_cnpj },
+      defaults: business,
+    });
+    return { dataBusiness, createdBusiness };
   }
   async readBusiness(business) {
     await Business.sync();

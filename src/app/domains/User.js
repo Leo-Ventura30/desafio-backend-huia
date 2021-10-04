@@ -1,10 +1,24 @@
 const { Op } = require("sequelize");
 const { User } = require("../models");
+const BusinessDomain = require("../domains/Business");
 class UserDomain {
-  async createUser(user) {
+  async createUser(user, business) {
     await User.sync();
-    const createdUser = await User.create(user);
-    return { msg: "Usuario criado!", data: createdUser };
+    const selectBusiness = await BusinessDomain.createBusiness(business);
+    const [dataUser, createdUser] = await User.findOrCreate({
+      where: {
+        [Op.or]: { login: user.login, email: user.email },
+      },
+      defaults: {
+        name: user.name,
+        login: user.login,
+        email: user.email,
+        password: user.password,
+        id_business: selectBusiness.dataBusiness.id,
+      },
+    });
+    if (!createdUser) throw new Error("Erro ao criar usuario!Tente novamente.");
+    return { msg: "Usuario criado!", data: dataUser, createdUser };
   }
   async readUser(user) {
     await User.sync();

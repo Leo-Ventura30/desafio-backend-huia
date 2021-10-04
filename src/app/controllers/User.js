@@ -1,15 +1,20 @@
 const UserDomain = require("../domains/User");
+const jwt = require("../../services/jwt");
 class UserController {
   async createUser(req, res) {
     try {
-      const user = {
-        name: "Jonh Shoes",
-        login: "45445445445",
-        email: "leo@leo.com",
-        password: "12345leo",
-        id_business: "77f1f710-2481-11ec-b0e2-f50769635c07",
-      };
-      const createdUser = await UserDomain.createUser(user);
+      const { name_business, cpf_cnpj, name, login, email, password } =
+        req.body;
+
+      const createdUser = await UserDomain.createUser(
+        {
+          name,
+          login,
+          email,
+          password,
+        },
+        { name: name_business, cpf_cnpj }
+      );
       return res.json(createdUser);
     } catch (error) {
       return res.json(error.message);
@@ -52,7 +57,8 @@ class UserController {
     try {
       const { login, password } = req.body;
       const loginUser = await UserDomain.loginUser({ login, password });
-      return res.json(loginUser);
+      const token = jwt.token(loginUser.id, loginUser.id_business);
+      return res.json({ loginUser, token });
     } catch (error) {
       return res.json(error.message);
     }

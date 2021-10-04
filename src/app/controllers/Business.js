@@ -7,6 +7,7 @@ class BusinessController {
         cpf_cnpj: "45445445445",
       };
       const createdBusiness = await BusinessDomain.createBusiness(business);
+
       return res.json(createdBusiness);
     } catch (error) {
       return res.json(error.message);
@@ -14,8 +15,9 @@ class BusinessController {
   }
   async readBusiness(req, res) {
     try {
-      const business = { cpf_cnpj: "45445445445" };
-      const selectBusiness = await BusinessDomain.readBusiness(business);
+      const { id_business: id } = req;
+
+      const selectBusiness = await BusinessDomain.readBusiness({ id });
       return res.json(selectBusiness);
     } catch (error) {
       return res.json(error.message);
