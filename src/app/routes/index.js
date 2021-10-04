@@ -7,9 +7,10 @@ const ClientController = require("../controllers/Client");
 const UserController = require("../controllers/User");
 const ProductsController = require("../controllers/Products");
 
+/* MIDDLEWARES DE AUTENTICAÇAO */
 router.use("/business", auth);
+
 /* BUSINESS ROUTES */
-router.post("/create/business", BusinessController.createBusiness);
 router.get("/business/show", BusinessController.readBusiness);
 router.put("/business/update", BusinessController.updateBusiness);
 router.delete("/business/delete", BusinessController.deleteBusiness);
@@ -21,10 +22,8 @@ router.put("/business/update/user", UserController.updateUser);
 router.delete("/business/delete/user", UserController.deleteUser);
 router.post("/login/user/business", UserController.loginUser);
 
-/* CLIENT ROUTES */
-router.post("/business/create/client", ClientController.createClient);
-
 /* PRODUCTS ROUTES*/
 router.post("/business/create/product/lot", ProductsController.createProduct);
+router.get("/business/show/products", ProductsController.readProduct);
 
 module.exports = router;
