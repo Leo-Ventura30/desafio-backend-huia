@@ -30,7 +30,21 @@ class ProductsController {
       return res.json(error.message);
     }
   }
-  async updateProduct(req, res) {}
+  async updateProduct(req, res) {
+    try {
+      const { id_business } = req;
+      const { id_code } = req.params;
+      const { name, color, description, value } = req.body;
+      const updatedProduct = await ProductsDomains.updateProduct(
+        { name, color, description, value },
+        id_code,
+        id_business
+      );
+      return res.json(updatedProduct);
+    } catch (error) {
+      return res.json(error.message);
+    }
+  }
   async deleteProduct(req, res) {}
 }
 

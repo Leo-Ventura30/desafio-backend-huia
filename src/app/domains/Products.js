@@ -1,3 +1,4 @@
+const { Op } = require("sequelize");
 const { Products } = require("../models");
 const ManufacturingDomain = require("./Manufacturing");
 class ProductsDomains {
@@ -20,9 +21,14 @@ class ProductsDomains {
     return createdProduct;
   }
   async readProductsByFk(id_business) {
-    console.log(id_business);
     const selectProducts = await Products.findAll({ where: id_business });
     return selectProducts;
+  }
+  async updateProduct(product, id_code, id_business) {
+    const updatedProdutc = await Products.update(product, {
+      where: { [Op.and]: { id_business, id_code } },
+    });
+    return { msg: "Produto atualizado!", updatedProdutc };
   }
 }
 
